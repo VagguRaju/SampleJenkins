@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    
+    environment {
+        PG_HOST = 'localhost'
+        PG_DBNAME = 'demo'
+        PG_USERNAME = 'postgres'
+        PG_PASSWORD = 0000  // Use Jenkins credentials for sensitive data
+        PG_PORT = 5432
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/VagguRaju/SampleJenkins.git'
+                
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                bat 'pip install psycopg2'
+            }
+        }
+        
+        stage('Run Python Script') {
+            steps {
+                bat 'python DatabaseConEx.py'  // Replace with your actual script name
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Pipeline execution finished'
+        }
+    }
+}
