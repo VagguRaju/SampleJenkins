@@ -1,4 +1,4 @@
-import psycopg2
+import psycopg
 import psycopg2.extras
 
 hostname = 'localhost'
