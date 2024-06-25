@@ -54,5 +54,5 @@ except psycopg2.Error as e:
 finally:
     if conn is not None:
         conn.close()
-    print("finally block executed")
-    print("Raju")
+    print("finally block executed!")
+    
